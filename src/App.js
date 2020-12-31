@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Translate from "./components/Translate";
+import Route from "./components/Route";
+import Header from "./components/Header";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
+export default () => {
+    return (
+        <div className="App">
+            <Header />
+            <Route path="/">
+                <h1>Home</h1>
+            </Route>
+            <Route path="/translate">
+                <Translate />
+            </Route>
+            <Route path="/test">
+                <h1>Test</h1>
+            </Route>
+            <Route path="/words">
+                <h1>My Words</h1>
+            </Route>
+        </div>
+    );
+};
