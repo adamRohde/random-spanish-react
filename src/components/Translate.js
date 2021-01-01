@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { InputGroup, FormControl } from "react-bootstrap";
 import Dropdown from "./Dropdown";
 import Convert from "./Convert";
 
@@ -6,12 +7,12 @@ import Convert from "./Convert";
 
 const options = [
     {
-        label: "Afrikaans",
-        value: "af",
-    },
-    {
         label: "Spanish",
         value: "es",
+    },
+    {
+        label: "Afrikaans",
+        value: "af",
     },
     {
         label: "Hindi",
@@ -23,11 +24,34 @@ const Translate = () => {
     const [text, setText] = useState("");
 
     return (
-        <div>
-            <div className="ui form">
+        <div className="translate-form">
+            <div>
                 <div className="field">
-                    <label>Enter Text</label>
-                    <input value={text} onChange={(e) => setText(e.target.value)} />
+                    <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                            <InputGroup.Text id="inputGroup-sizing-default">English</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <FormControl
+                            aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default"
+                            placeholder="English phrase"
+                            value={text}
+                            onChange={(e) => setText(e.target.value)}
+                        />
+                    </InputGroup>
+
+                    <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                            <InputGroup.Text>Spanish</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <FormControl
+                            aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default"
+                            placeholder="Translated phrase"
+                            text={<Convert text={text} language={language} />}
+                            language={language}
+                        />
+                    </InputGroup>
                 </div>
             </div>
             <Dropdown label="Select a Language" selected={language} onSelectedChange={setLanguage} options={options} />
